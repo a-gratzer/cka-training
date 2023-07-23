@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"ReplicaSet","metadata":{"annotations":{},"labels":{"app":"guestbook","tier":"guestbook"},"name":"frontend","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"tier":"guestbook"}},"template":{"metadata":{"labels":{"tier":"guestbook"}},"spec":{"containers":[{"image":"gcr.io/google_samples/gb-frontend:v3","name":"php-redis"}]}}}}
+  creationTimestamp: "2023-07-23T17:00:00Z"
+  generation: 1
+  labels:
+    app: guestbook
+    tier: guestbook
+  name: frontend
+  namespace: default
+  resourceVersion: "7240"
+  uid: e26cc764-e28a-45f3-83d3-a62cac227860
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: guestbook
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        tier: guestbook
+    spec:
+      containers:
+      - image: gcr.io/google_samples/gb-frontend:v3
+        imagePullPolicy: IfNotPresent
+        name: php-redis
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  fullyLabeledReplicas: 1
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
