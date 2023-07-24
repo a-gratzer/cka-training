@@ -29,3 +29,11 @@ spec:
     value: "blue"
     effect: "NoSchedule"
 ```
+
+Show taints on node
+
+    k describe node minikube | grep Taints
+
+## Remove taint
+
+    k taint nodes node1 app=blue:NoSchedule-
