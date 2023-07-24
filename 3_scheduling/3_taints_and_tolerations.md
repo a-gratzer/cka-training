@@ -1,5 +1,8 @@
 https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
 
+Define which node will accept a specific pod.
+It might be that the pod will be scheduled on another node...
+
 - NoSchedule
 - PreferNoSchedule
 - NoExecute
