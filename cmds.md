@@ -1,3 +1,9 @@
+## Exports
+```bash
+export do="--dry-run=client -o yaml"
+export d="--dry-run=client"
+export oy="-o yaml"
+```
 ## Count entries
 e.g. pods
     
