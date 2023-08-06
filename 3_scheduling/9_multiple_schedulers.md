@@ -1,18 +1,12 @@
 https://kubernetes.io/docs/reference/scheduling/config/
+https://jamesdefabia.github.io/docs/admin/multiple-schedulers/
 
 ```yaml
 apiVersion: kubescheduler.config.k8s.io/v1
 kind: KubeSchedulerConfiguration
 profiles:
-  - schedulerName: default-scheduler
-  - schedulerName: no-scoring-scheduler
-    plugins:
-      preScore:
-        disabled:
-          - name: '*'
-      score:
-        disabled:
-          - name: '*'
+  - schedulerName: my-custom-scheduler
+
 leaderElection:
   leaderElect: true
   resourceNamespace: kube-system
@@ -35,7 +29,7 @@ metadata:
   labels:
     component: scheduler
     tier: control-plane
-  name: my-scheduler
+  name: my-custom-scheduler
   namespace: kube-system
 spec:
   replicas: 1
@@ -58,7 +52,7 @@ spec:
             path: /healthz
             port: 10251
           initialDelaySeconds: 15
-        name: kube-second-scheduler
+        name: my-custom-scheduler
         readinessProbe:
           httpGet:
             path: /healthz
@@ -72,4 +66,26 @@ spec:
       hostNetwork: false
       hostPID: false
       volumes: []
+```
+
+## How to use the custom scheduler?
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+  schedulerName: my-custom-scheduler
+```
+
+
+## Which scheduler picked up a pod?
+
+```yaml
+k get events -o wide
+k logs my-custom-scheduler --name-space=kube-system
 ```
