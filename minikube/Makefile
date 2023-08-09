@@ -48,6 +48,9 @@ mini_profile_list:
 mini_ssh:
 	minikube ssh -n minikube
 
+mini_metrics:
+	minikube addons enable metric-server
+
 # #############################
 # kubectl
 
