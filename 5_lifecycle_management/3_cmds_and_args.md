@@ -7,5 +7,6 @@ spec:
   containers:
     - name: ubuntu-sleeper
       image: ubuntu-sleeper
-      args: ["10"]
+      command: ["sleep2.0"] #ENTRYPOINT override
+      args: ["10"] #CMD override
 ```
