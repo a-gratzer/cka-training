@@ -51,7 +51,7 @@ spec:
       image: registry.k8s.io/busybox
       envFrom:
         - secretRef:
-          name: app-secret
+            name: app-secret
 ```
 
 #### Encode
@@ -66,3 +66,10 @@ spec:
 
     k get secrets
     k describe secrets
+
+```yaml
+k create secret generic db-secret --from-literal=DB_HOST=sql01 --from-literal=DB_User=root --from-literal=DB_Password=password123 --dry-run=client -o yaml > secret.yaml
+```
+
+## Encryption on REST
+https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
