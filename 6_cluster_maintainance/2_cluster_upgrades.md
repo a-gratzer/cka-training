@@ -1,4 +1,5 @@
 # Cluster upgrades
+https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/learn/lecture/24458188#overview
 
 No component of the controlplane should have a higher version than the <b>kube-apiserver</b>.
 
